@@ -1,685 +1,211 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cam Tanıtım Uygulaması</title>
 
-  <!-- Bootstrap 5 -->
+  <!-- Bootstrap -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
-  >
+  />
 
-  <style>
-    :root {
-      --app-bg: #0b1220;
-      --card-bg: #111827;
-      --accent: #22c55e;
-      --accent-blue: #38bdf8;
-      --text-main: #f9fafb;
-      --text-muted: #9ca3af;
-      --border-soft: #1f2937;
-    }
-
-    body {
-      background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-      color: var(--text-main);
-      min-height: 100vh;
-      padding: 1rem;
-    }
-
-    .app-shell {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .glass-card {
-      background: radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 40%),
-                  radial-gradient(circle at bottom right, rgba(56,189,248,0.18), transparent 45%),
-                  var(--card-bg);
-      border-radius: 1.5rem;
-      border: 1px solid rgba(148,163,184,0.15);
-      box-shadow:
-        0 20px 45px rgba(15,23,42,0.9),
-        0 0 0 1px rgba(15,23,42,0.9);
-      padding: 1.25rem;
-    }
-
-    @media (min-width: 768px) {
-      .glass-card {
-        padding: 1.75rem;
-      }
-    }
-
-    .app-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: .75rem;
-      margin-bottom: 1rem;
-    }
-
-    .logo-dot {
-      width: 36px;
-      height: 36px;
-      border-radius: 999px;
-      background: conic-gradient(from 140deg, #22c55e, #38bdf8, #a855f7, #22c55e);
-      padding: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-      background: #020617;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: .9rem;
-      color: #e5e7eb;
-      letter-spacing: .05em;
-    }
-
-    .badge-chip {
-      border-radius: 999px;
-      padding: .2rem .6rem;
-      font-size: .7rem;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.35);
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: .35rem;
-      white-space: nowrap;
-    }
-
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34,197,94,.7);
-    }
-
-    /* Tabs */
-    .nav-pills .nav-link {
-      border-radius: 999px;
-      padding: .45rem .9rem;
-      font-size: .85rem;
-      background: transparent;
-      color: var(--text-muted);
-      border: 1px solid rgba(148,163,184,0.3);
-      display: inline-flex;
-      align-items: center;
-      gap: .35rem;
-    }
-
-    .nav-pills .nav-link.active {
-      background: linear-gradient(120deg, #22c55e, #16a34a);
-      border-color: transparent;
-      color: #022c22;
-      box-shadow: 0 0 20px rgba(34,197,94,0.35);
-    }
-
-    .nav-pills .nav-link.blue-active {
-      background: linear-gradient(120deg, #0ea5e9, #2563eb);
-      color: #e0f2fe;
-      box-shadow: 0 0 20px rgba(56,189,248,0.4);
-    }
-
-    /* Layout */
-    .preview-wrap {
-      margin-top: 1.2rem;
-    }
-
-    .preview-frame {
-      position: relative;
-      border-radius: 1rem;
-      overflow: hidden;
-      background: #020617;
-      border: 1px solid rgba(148,163,184,0.35);
-      min-height: 260px;
-    }
-
-    .preview-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: filter .35s ease, transform .35s ease;
-    }
-
- .preview-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  /* Parlama / ışık kırılması hissi için screen daha iyi */
-  mix-blend-mode: screen;
-  opacity: .9;
-  transition: background 0.35s ease, opacity 0.35s ease;
-}
-
-
-    .preview-label {
-      position: absolute;
-      left: .9rem;
-      bottom: .8rem;
-      padding: .25rem .6rem;
-      border-radius: 999px;
-      font-size: .7rem;
-      background: rgba(15,23,42,0.88);
-      color: #e5e7eb;
-      border: 1px solid rgba(148,163,184,0.5);
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      backdrop-filter: blur(12px);
-    }
-
-    .preview-label-pill {
-      padding: .1rem .5rem;
-      border-radius: 999px;
-      font-size: .65rem;
-      background: rgba(34,197,94,0.12);
-      border: 1px solid rgba(34,197,94,0.5);
-      color: #bbf7d0;
-    }
-
-    .preview-type-pill-blue {
-      background: rgba(56,189,248,0.14);
-      border-color: rgba(56,189,248,0.6);
-      color: #e0f2fe;
-    }
-
-    .intensity-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .5rem;
-    }
-
-    .btn-intensity {
-      flex: 1 0 calc(50% - .5rem);
-      border-radius: .75rem;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: rgba(15,23,42,0.95);
-      color: var(--text-muted);
-      font-size: .85rem;
-      padding: .45rem .6rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: .3rem;
-      transition: all .2s ease;
-    }
-
-    .btn-intensity span.value {
-      font-weight: 600;
-      color: #e5e7eb;
-    }
-
-    .btn-intensity span.sub {
-      font-size: .7rem;
-    }
-
-    .btn-intensity.active {
-      background: radial-gradient(circle at top, rgba(34,197,94,0.22), transparent 55%);
-      border-color: #22c55e;
-      box-shadow: 0 0 0 1px rgba(34,197,94,0.4);
-      transform: translateY(-1px);
-    }
-
-    .btn-intensity.blue-active {
-      background: radial-gradient(circle at top, rgba(56,189,248,0.25), transparent 55%);
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 1px rgba(56,189,248,0.45);
-    }
-
-    .metrics-card {
-      margin-top: .9rem;
-      border-radius: 1rem;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.3);
-      padding: .75rem .9rem;
-      font-size: .82rem;
-    }
-
-    .metric-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: .35rem;
-      gap: .6rem;
-    }
-
-    .metric-label {
-      color: var(--text-muted);
-    }
-
-    .metric-pill {
-      border-radius: 999px;
-      padding: .15rem .6rem;
-      font-size: .75rem;
-      border: 1px solid rgba(148,163,184,0.55);
-      background: rgba(15,23,42,0.95);
-    }
-
-    .metric-pill-uv {
-      border-color: rgba(34,197,94,0.7);
-      color: #bbf7d0;
-    }
-
-    .metric-pill-filter {
-      border-color: rgba(56,189,248,0.8);
-      color: #e0f2fe;
-    }
-
-    .metric-desc {
-      margin-top: .4rem;
-      color: var(--text-muted);
-      font-size: .78rem;
-    }
-
-    @media (min-width: 992px) {
-      .preview-wrap {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-        gap: 1.25rem;
-        align-items: stretch;
-      }
-    }
-
-    @media (max-width: 575.98px) {
-      body {
-        padding: .75rem;
-      }
-      .glass-card {
-        border-radius: 1.2rem;
-      }
-      .preview-frame {
-        min-height: 220px;
-      }
-    }
-  </style>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <div class="app-shell">
-    <div class="glass-card">
-      <!-- Header -->
-      <header class="app-header">
-        <div class="d-flex align-items-center gap-2">
-          <div class="logo-dot">
-            <div class="logo-inner">CAM</div>
-          </div>
-          <div>
-            <h1 class="h6 mb-0">Cam Tanıtım Uygulaması</h1>
-            <small class="text-secondary" style="font-size:.74rem;">
-              Netlik, filtre ve renk farkını canlı görün.
-            </small>
-          </div>
-        </div>
-        <div class="d-none d-sm-flex align-items-center gap-2">
-          <span class="badge-chip">
-            <span class="badge-dot"></span>
-            Tablet uyumlu arayüz
-          </span>
-        </div>
-      </header>
+<body class="bg-body">
 
-      <!-- Tabs -->
-      <ul class="nav nav-pills mb-2" id="glassTypeTabs">
-        <li class="nav-item me-1">
-          <button class="nav-link active" data-type="green">
-            <span>Yeşil Antirefle</span>
-            <span class="badge bg-success bg-opacity-20 border-0 text-light" style="font-size:.65rem;">Şeffaf netlik</span>
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-link" data-type="blue">
-            <span>Blue Cam</span>
-            <span class="badge bg-info bg-opacity-25 border-0 text-light" style="font-size:.65rem;">Mavi ışık filtresi</span>
-          </button>
-        </li>
-      </ul>
-
-      <!-- Small helper -->
-      <p class="mb-3 text-secondary" style="font-size:.78rem;">
-        Aşağıdan filtre oranını seç; aynı sahnenin farklı cam kalitesindeki görünümünü karşılaştır.
-      </p>
-
-      <!-- Content -->
-      <div class="preview-wrap">
-        <!-- Preview -->
+  <div class="app-wrapper container-fluid py-3">
+    <!-- HEADER -->
+    <header class="mb-3">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
         <div>
-          <div class="preview-frame mb-2">
-            <img
-              id="previewImage"
-              src="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Cam Önizleme"
-            >
-            <div id="previewOverlay" class="preview-overlay"></div>
-            <div class="preview-label">
-              <span id="previewTypePill" class="preview-label-pill">
-                Yeşil Antirefle
-              </span>
-              <span id="previewLevelText">Filtre: %45</span>
-            </div>
-          </div>
-          <small class="text-secondary" style="font-size:.72rem;">
-            * Demo görselidir. 
-          </small>
+          <h1 class="app-title mb-1">Cam Tanıtım Paneli</h1>
+          <p class="app-subtitle mb-0">
+            Aynı sahnede farklı cam kalitelerini müşteriye canlı göster.
+          </p>
         </div>
+        <button class="btn btn-outline-light btn-sm rounded-pill shadow-sm" id="fullscreenBtn">
+          Tam Ekran
+        </button>
+      </div>
+    </header>
 
-        <!-- Controls + Metrics -->
-        <div>
-          <h6 class="mb-2" style="font-size:.84rem;">Filtre / Geçirgenlik Seviyesi</h6>
-          <div id="intensityButtonsGreen" class="intensity-buttons mb-2">
-            <!-- Yeşil antirefle için yüzde butonları -->
-            <button class="btn-intensity active" data-level="30" data-type="green">
-              <span class="value">%30</span>
-              <span class="sub">Temel koruma</span>
-            </button>
-            <button class="btn-intensity" data-level="45" data-type="green">
-              <span class="value">%45</span>
-              <span class="sub">Dengeli</span>
-            </button>
-            <button class="btn-intensity" data-level="60" data-type="green">
-              <span class="value">%60</span>
-              <span class="sub">Yüksek netlik</span>
-            </button>
-            <button class="btn-intensity" data-level="90" data-type="green">
-              <span class="value">%90</span>
-              <span class="sub">Premium</span>
-            </button>
-            <button class="btn-intensity" data-level="99" data-type="green">
-              <span class="value">%99</span>
-              <span class="sub">Maksimum</span>
-            </button>
-          </div>
+    <!-- TABS -->
+    <ul class="nav nav-pills nav-fill mb-3" id="camTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="green-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#green-pane"
+          type="button"
+          role="tab"
+          aria-controls="green-pane"
+          aria-selected="true"
+        >
+          Yeşil Antirefle Cam
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="blue-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#blue-pane"
+          type="button"
+          role="tab"
+          aria-controls="blue-pane"
+          aria-selected="false"
+        >
+          Blue Cam
+        </button>
+      </li>
+    </ul>
 
-          <div id="intensityButtonsBlue" class="intensity-buttons mb-2" style="display:none;">
-            <!-- Blue cam için yüzde butonları -->
-            <button class="btn-intensity active" data-level="30" data-type="blue">
-              <span class="value">%30</span>
-              <span class="sub">Gözle görünür sarılık</span>
-            </button>
-            <button class="btn-intensity" data-level="60" data-type="blue">
-              <span class="value">%60</span>
-              <span class="sub">Daha az sarı</span>
-            </button>
-            <button class="btn-intensity" data-level="90" data-type="blue">
-              <span class="value">%90</span>
-              <span class="sub">Doğala yakın</span>
-            </button>
-            <button class="btn-intensity" data-level="99" data-type="blue">
-              <span class="value">%99</span>
-              <span class="sub">Neredeyse gerçek renk</span>
-            </button>
-          </div>
+    <!-- TAB CONTENT -->
+    <div class="tab-content">
 
-          <div class="metrics-card">
-            <div class="metric-row">
-              <span class="metric-label">UV Koruma Oranı</span>
-              <span id="metricUv" class="metric-pill metric-pill-uv">UV %80</span>
+      <!-- YEŞİL ANTİREFLE -->
+      <div
+        class="tab-pane fade show active"
+        id="green-pane"
+        role="tabpanel"
+        aria-labelledby="green-tab"
+      >
+        <div class="card glass-card mb-4">
+          <div class="card-body">
+            <div class="row g-4 align-items-stretch">
+              <!-- PREVIEW -->
+              <div class="col-md-7">
+                <div class="glass-frame" id="greenFrame">
+                  <!-- İKİ CAMDA DA AYNI GÖRSEL -->
+                  <img
+                    src="img.jpg"
+                    alt="Camdan görüntü"
+                    class="glass-image"
+                    id="greenImage"
+                  />
+                  <div class="glass-overlay" id="greenOverlay"></div>
+                  <span class="glass-label badge" id="greenLabel">
+                    Yeşil Antirefle %30
+                  </span>
+                </div>
+              </div>
+
+              <!-- KONTROLLER -->
+              <div class="col-md-5">
+                <h5 class="card-title mb-2 text-green-title">Yeşil Antirefle Cam</h5>
+                <p class="small text-muted mb-3">
+                  Tüm camlarda sahne aynı, sadece geçtiği camın kalitesi ve netliği değişiyor.
+                </p>
+
+                <!-- Seviye butonları -->
+                <div class="btn-group flex-wrap w-100 mb-3" role="group" aria-label="Yeşil antirefle seviyeleri">
+                  <button type="button" class="btn btn-outline-success level-btn active"
+                          data-type="green" data-level="30">%30</button>
+                  <button type="button" class="btn btn-outline-success level-btn"
+                          data-type="green" data-level="45">%45</button>
+                  <button type="button" class="btn btn-outline-success level-btn"
+                          data-type="green" data-level="60">%60</button>
+                  <button type="button" class="btn btn-outline-success level-btn"
+                          data-type="green" data-level="90">%90</button>
+                  <button type="button" class="btn btn-success level-btn"
+                          data-type="green" data-level="99">%99</button>
+                </div>
+
+                <!-- UV / Filtre bilgileri -->
+                <dl class="row small mb-2">
+                  <dt class="col-6 text-muted">UV Koruma</dt>
+                  <dd class="col-6 fw-semibold" id="greenUv">-%</dd>
+
+                  <dt class="col-6 text-muted">Yansıtma / Filtre Oranı</dt>
+                  <dd class="col-6 fw-semibold" id="greenFilter">-%</dd>
+                </dl>
+
+                <p class="small mb-0 text-muted" id="greenDesc">
+                  Seçilen cam için açıklama burada görünecek.
+                </p>
+              </div>
             </div>
-            <div class="metric-row">
-              <span class="metric-label">Filtre / Yansıma Kontrolü</span>
-              <span id="metricFilter" class="metric-pill metric-pill-filter">Filtre %45</span>
-            </div>
-            <p id="metricDesc" class="metric-desc mb-0">
-              Orta seviye antirefle kaplama: Günlük kullanım için yeterli netlik ve yansıma kontrolü sunar.
-            </p>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- BLUE CAM -->
+      <div
+        class="tab-pane fade"
+        id="blue-pane"
+        role="tabpanel"
+        aria-labelledby="blue-tab"
+      >
+        <div class="card glass-card mb-4">
+          <div class="card-body">
+            <div class="row g-4 align-items-stretch">
+              <!-- PREVIEW -->
+              <div class="col-md-7">
+                <div class="glass-frame" id="blueFrame">
+                  <img
+                    src="img.jpg"
+                    alt="Camdan görüntü"
+                    class="glass-image"
+                    id="blueImage"
+                  />
+                  <div class="glass-overlay" id="blueOverlay"></div>
+                  <span class="glass-label badge" id="blueLabel">
+                    Blue Cam %30
+                  </span>
+                </div>
+              </div>
+
+              <!-- KONTROLLER -->
+              <div class="col-md-5">
+                <h5 class="card-title mb-2 text-blue-title">Blue Cam</h5>
+                <p class="small text-muted mb-3">
+                  Ucuz blue cam sarı ve kirli gösterirken, kalite arttıkça sarılık azalır, görüntü beyaza yaklaşır.
+                </p>
+
+                <!-- Seviye butonları -->
+                <div class="btn-group flex-wrap w-100 mb-3" role="group" aria-label="Blue cam seviyeleri">
+                  <button type="button" class="btn btn-outline-primary level-btn active"
+                          data-type="blue" data-level="30">%30</button>
+                  <button type="button" class="btn btn-outline-primary level-btn"
+                          data-type="blue" data-level="60">%60</button>
+                  <button type="button" class="btn btn-outline-primary level-btn"
+                          data-type="blue" data-level="90">%90</button>
+                  <button type="button" class="btn btn-primary level-btn"
+                          data-type="blue" data-level="99">%99</button>
+                </div>
+
+                <!-- UV / Filtre bilgileri -->
+                <dl class="row small mb-2">
+                  <dt class="col-6 text-muted">UV / Mavi Işık Koruma</dt>
+                  <dd class="col-6 fw-semibold" id="blueUv">-%</dd>
+
+                  <dt class="col-6 text-muted">Renk Doğruluğu</dt>
+                  <dd class="col-6 fw-semibold" id="blueFilter">-%</dd>
+                </dl>
+
+                <p class="small mb-0 text-muted" id="blueDesc">
+                  Seçilen blue cam için açıklama burada görünecek.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- .tab-content -->
+
+    <footer class="pt-2 small text-center text-muted">
+      Tablet için optimize – tam ekran modunda showroom gibi kullan.
+    </footer>
   </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    // Konfigler: burada filtre değerleri, UV oranları vs. var
-    const CONFIG = {
-  green: {
-    30: {
-      blur: 0,                        // HER SEVİYE NET
-      brightness: 1.02,
-      saturate: 1.0,
-      contrast: 0.96,
-      hue: 0,
-      sepia: 0.02,
-      // Daha çok parlama, hafif yeşil yansıma
-      overlay: "linear-gradient(to bottom, rgba(255,255,255,0.48), rgba(34,197,94,0.20))",
-      uv: 70,
-      filter: 30,
-      desc: "Başlangıç seviyesi antirefle: Görüntü net, parlama biraz daha belirgin. Bütçe dostu çözüm."
-    },
-    45: {
-      blur: 0,
-      brightness: 1.03,
-      saturate: 1.02,
-      contrast: 0.99,
-      hue: 0,
-      sepia: 0.01,
-      overlay: "linear-gradient(to bottom, rgba(255,255,255,0.34), rgba(34,197,94,0.16))",
-      uv: 80,
-      filter: 45,
-      desc: "Günlük kullanım için dengeli seviye: Parlama kontrolü iyileşir, renkler daha doğal görünür."
-    },
-    60: {
-      blur: 0,
-      brightness: 1.04,
-      saturate: 1.04,
-      contrast: 1.02,
-      hue: 0,
-      sepia: 0,
-      overlay: "linear-gradient(to bottom, rgba(255,255,255,0.24), rgba(34,197,94,0.12))",
-      uv: 90,
-      filter: 60,
-      desc: "Yüksek performanslı antirefle: Parlama bariz şekilde azalır, netlik ve canlılık artar."
-    },
-    90: {
-      blur: 0,
-      brightness: 1.05,
-      saturate: 1.06,
-      contrast: 1.05,
-      hue: 0,
-      sepia: 0,
-      overlay: "linear-gradient(to bottom, rgba(255,255,255,0.16), rgba(34,197,94,0.08))",
-      uv: 95,
-      filter: 90,
-      desc: "Premium seviye: Işık kırılması çok daha kontrollü, cam üzerindeki yansımalar minimum seviyede."
-    },
-    99: {
-      blur: 0,
-      brightness: 1.06,
-      saturate: 1.08,
-      contrast: 1.07,
-      hue: 0,
-      sepia: 0,
-      overlay: "linear-gradient(to bottom, rgba(255,255,255,0.10), rgba(34,197,94,0.05))",
-      uv: 99,
-      filter: 99,
-      desc: "En üst seviye antirefle: Maksimum UV koruması, minimum parlama ve en doğal görüntü."
-    }
-  },
-  blue: {
-    30: {
-      blur: 0,
-      brightness: 1.0,
-      saturate: 1.02,
-      contrast: 0.97,
-      hue: 0,
-      sepia: 0.16, // hafif sarılık, abartı değil
-      overlay: "linear-gradient(to bottom, rgba(255,255,255,0.45), rgba(234,179,8,0.20))",
-      uv: 50,
-      filter: 30,
-      desc: "Ekonomik blue cam: Görüntü net, mavi ışık filtresi temel seviyede. Az da olsa sıcak/sarı ton hissedilir."
-    },
-    60: {
-      blur: 0,
-      brightness: 1.02,
-      saturate: 1.03,
-      contrast: 1.0,
-      hue: -4,
-      sepia: 0.08,
-      overlay: "linear-gradient(to bottom, rgba(255,255,255,0.34), rgba(59,130,246,0.16))",
-      uv: 75,
-      filter: 60,
-      desc: "Orta seviye blue cam: Sarılık belirgin şekilde azalır, ekran kullanımı daha konforlu hale gelir."
-    },
-    90: {
-      blur: 0,
-      brightness: 1.04,
-      saturate: 1.04,
-      contrast: 1.04,
-      hue: -8,
-      sepia: 0.03,
-      overlay: "linear-gradient(to bottom, rgba(255,255,255,0.24), rgba(37,99,235,0.14))",
-      uv: 90,
-      filter: 90,
-      desc: "Kaliteli blue cam: Neredeyse doğal renkler, güçlü mavi ışık filtresi, az parlama."
-    },
-    99: {
-      blur: 0,
-      brightness: 1.05,
-      saturate: 1.05,
-      contrast: 1.06,
-      hue: -10,
-      sepia: 0,
-      overlay: "linear-gradient(to bottom, rgba(255,255,255,0.16), rgba(30,64,175,0.12))",
-      uv: 99,
-      filter: 99,
-      desc: "En üst seviye blue cam: Gerçeğe çok yakın renkler, maksimum mavi ışık engelleme ve minimum parlama."
-    }
-  }
-};
-
-
-    const imgEl = document.getElementById("previewImage");
-    const overlayEl = document.getElementById("previewOverlay");
-    const previewTypePill = document.getElementById("previewTypePill");
-    const previewLevelText = document.getElementById("previewLevelText");
-    const metricUv = document.getElementById("metricUv");
-    const metricFilter = document.getElementById("metricFilter");
-    const metricDesc = document.getElementById("metricDesc");
-
-    const tabs = document.querySelectorAll("#glassTypeTabs .nav-link");
-    const intensityButtonsGreen = document.getElementById("intensityButtonsGreen");
-    const intensityButtonsBlue = document.getElementById("intensityButtonsBlue");
-
-    let currentType = "green";
-    let currentLevel = "45"; // başlangıç için 45 gösterelim
-
-    function applyConfig(type, level) {
-      const cfg = CONFIG[type][level];
-      if (!cfg) return;
-
-      const filterStr = [
-        `blur(${cfg.blur}px)`,
-        `brightness(${cfg.brightness})`,
-        `saturate(${cfg.saturate})`,
-        `contrast(${cfg.contrast})`,
-        `hue-rotate(${cfg.hue}deg)`,
-        `sepia(${cfg.sepia})`
-      ].join(" ");
-
-      imgEl.style.filter = filterStr;
-      imgEl.style.transform = (parseFloat(level) >= 90) ? "scale(1.01)" : "scale(1.0)";
-
-      overlayEl.style.backgroundColor = cfg.overlay;
-      overlayEl.style.opacity = (type === "green") ? 0.85 : 0.9;
-
-      metricUv.textContent = `UV %${cfg.uv}`;
-      metricFilter.textContent = `Filtre %${cfg.filter}`;
-      metricDesc.textContent = cfg.desc;
-
-      previewLevelText.textContent = `Filtre: %${level}`;
-
-      // Tip etiketini güncelle
-      if (type === "green") {
-        previewTypePill.textContent = "Yeşil Antirefle";
-        previewTypePill.classList.remove("preview-type-pill-blue");
-      } else {
-        previewTypePill.textContent = "Blue Cam";
-        previewTypePill.classList.add("preview-type-pill-blue");
-      }
-
-      currentType = type;
-      currentLevel = level;
-    }
-
-    function updateButtonStates() {
-      const allButtons = document.querySelectorAll(".btn-intensity");
-      allButtons.forEach(btn => {
-        const type = btn.getAttribute("data-type");
-        const level = btn.getAttribute("data-level");
-        btn.classList.remove("active", "blue-active");
-
-        if (type === currentType && level === currentLevel) {
-          btn.classList.add("active");
-          if (type === "blue") {
-            btn.classList.add("blue-active");
-          }
-        }
-      });
-    }
-
-    // Başlangıç için yeşil 45 uygulayalım
-    applyConfig("green", "45");
-    updateButtonStates();
-
-    // Tab tıklama
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        const type = tab.getAttribute("data-type");
-        if (!type) return;
-
-        tabs.forEach(t => t.classList.remove("active", "blue-active"));
-        tab.classList.add("active");
-        if (type === "blue") {
-          tab.classList.add("blue-active");
-        }
-
-        if (type === "green") {
-          intensityButtonsGreen.style.display = "flex";
-          intensityButtonsBlue.style.display = "none";
-          // default: %45
-          currentType = "green";
-          currentLevel = "45";
-        } else {
-          intensityButtonsGreen.style.display = "none";
-          intensityButtonsBlue.style.display = "flex";
-          // default: %60
-          currentType = "blue";
-          currentLevel = "60";
-        }
-
-        applyConfig(currentType, currentLevel);
-        updateButtonStates();
-      });
-    });
-
-    // Filtre butonları
-    document.addEventListener("click", (e) => {
-      const btn = e.target.closest(".btn-intensity");
-      if (!btn) return;
-
-      const level = btn.getAttribute("data-level");
-      const type = btn.getAttribute("data-type");
-      if (!level || !type) return;
-
-      currentType = type;
-      currentLevel = level;
-      applyConfig(type, level);
-      updateButtonStates();
-    });
-  </script>
+  <!-- App JS -->
+  <script src="app.js"></script>
 </body>
 </html>
