@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
       why: "Hem netlik hem yansıma kontrolü isteyen, görüntü kalitesine önem veren kullanıcılar için. Özellikle detaylı iş yapanlar (optisyen, tasarımcı, mühendis vb.) için ideal seçim.",
       starsLabel: "Yüksek performans cam",
       premium: false,
-      price: "₺2.600 – ₺3.100"
+      price: "₺12.600 – ₺41.100"
     },
     kodak: {
       brandName: "Kodak RX",
@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
       why: "Gün boyu takacağım, her ortamda rahatsız etmeyen, yumuşak ve konforlu bir cam olsun diyen müşteriler için. Fiyat/performans RX tercihi.",
       starsLabel: "Konfor odaklı cam",
       premium: false,
-      price: "₺2.400 – ₺2.900"
+      price: "₺10.400 – ₺48.900"
     },
     zeiss: {
       brandName: "Zeiss RX",
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
       why: "Marka, kalite ve performansta en üst segmenti isteyenler için. Fotoğraf, tasarım, detaylı okuma ve gece sürüşü yapan kullanıcılar Zeiss farkını net şekilde hisseder.",
       starsLabel: "Premium, ödüllü cam teknolojisi",
       premium: true,
-      price: "₺3.400 – ₺4.000"
+      price: "₺13.400 – ₺66.000"
     }
   };
 
