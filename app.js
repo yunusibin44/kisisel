@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     30: {
       uv: 0,
       filter: 30,
-      overlayColor: "rgba(22,163,74,0.12)",
+      overlayColor: "rgba(22,163,74,0.10)",
       imgFilter: "brightness(0.75) contrast(0.85) saturate(0.9) blur(1px)",
       desc: "Giriş seviye antirefle. Yansımayı kısmen kırar, görüntüde hafif koyuluk ve matlık vardır.",
       why: "Standart cama göre daha az yansıma, ancak bütçeyi korumak isteyen ve çok parlak ortamda olmayan kullanıcılar için idealdir. İlk defa antirefle deneyecek müşteriler için iyi başlangıç.",
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     45: {
       uv: 0,
       filter: 45,
-      overlayColor: "rgba(22,163,74,0.16)",
+      overlayColor: "rgba(22,163,74,0.12)",
       imgFilter: "brightness(0.85) contrast(0.92) saturate(0.95) blur(0.7px)",
       desc: "Günlük kullanım için dengeli seviye. Refle yansımaları azalır, detaylar daha net görünür.",
       why: "Hem standart cama göre belirgin fark istiyorum, hem de en pahalı seviyeye çıkmak istemiyorum diyen kullanıcılar için. Ofis + dış mekan karma kullanıma uygun, fiyat/performans seviyesi.",
@@ -273,6 +273,51 @@ const rxOverlay = document.getElementById("rxOverlay");  // SADECE FİLTRE OVERL
   const rxBadgeUv = document.getElementById("rxBadgeUv");
   const rxBadgeFilter = document.getElementById("rxBadgeFilter");
   const rxPrice = document.getElementById("rxPrice");
+  // ======================
+  //   KUPON KODU SİSTEMİ
+  // ======================
+  const couponCodeInput = document.getElementById("couponCodeInput");
+  const applyCouponBtn = document.getElementById("applyCouponBtn");
+  const couponResult = document.getElementById("couponResult");
+
+  // Buradaki kodları sen isteğine göre değiştirebilirsin
+  const couponMap = {
+    sila10: 10,
+    nazartoros20: 20,
+    caglar30: 30
+    // örnek: INSTAGRAM15: 15
+  };
+
+  if (applyCouponBtn && couponCodeInput && couponResult) {
+    applyCouponBtn.addEventListener("click", () => {
+      const raw = couponCodeInput.value.trim().toUpperCase();
+      couponResult.classList.remove("success", "error");
+
+      if (!raw) {
+        couponResult.textContent = "Lütfen bir kupon kodu girin.";
+        couponResult.classList.add("error");
+        return;
+      }
+
+      const rate = couponMap[raw];
+
+      if (!rate) {
+        couponResult.textContent = "Geçersiz veya süresi dolmuş kupon.";
+        couponResult.classList.add("error");
+        return;
+      }
+
+      // Geçerli kupon → mesajı göster
+      couponResult.textContent = `Kupon onaylandı. Ekstra indirim: %${rate}`;
+      couponResult.classList.add("success");
+
+      // Eğer footer'daki iskonto hesap alanı varsa oraya da yazalım
+      const discRate = document.getElementById("discRate");
+      if (discRate) {
+        discRate.value = rate;
+      }
+    });
+  }
 
   // Slider DOM
   const rxCompare = document.getElementById("rxCompare");
@@ -287,7 +332,7 @@ function setRxComparePosition(percent) {
 
 
   // Başlangıç orta
-  setRxComparePosition(0);
+  setRxComparePosition(50);
 
   if (rxCompare) {
     let dragging = false;
@@ -387,7 +432,7 @@ function setRxBrand(brandKey) {
   }
 
   // Marka değişince her zaman sıfırdan başlasın (tam filtresiz görüntü)
-  setRxComparePosition(0);
+  setRxComparePosition(50);
 }
 
 
