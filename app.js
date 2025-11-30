@@ -282,9 +282,9 @@ const rxOverlay = document.getElementById("rxOverlay");  // SADECE FİLTRE OVERL
 
   // Buradaki kodları sen isteğine göre değiştirebilirsin
   const couponMap = {
-    sila10: 10,
-    nazartoros20: 20,
-    caglar30: 30
+    SİLA10: 10,
+    NAZARTOROS20: 20,
+    CAGLAR30: 30
     // örnek: INSTAGRAM15: 15
   };
 
