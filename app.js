@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ======================
-    // ======================
-  //   ŞANS ÇARKI – EK İSKONTO
-  // ======================
   //   ŞANS ÇARKI – EK İSKONTO (YENİ)
   // ======================
   const discountWheel = document.getElementById("discountWheel");
@@ -13,9 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ? discountWheel.querySelectorAll(".wheel-segment")
     : [];
 
-  // DOM sırasına göre iskonto değerleri:
-  // data-discount attribute'u ile bire bir
-  const wheelDiscounts = Array.from(wheelSegments).map(seg =>
+  const wheelDiscounts = Array.from(wheelSegments).map((seg) =>
     parseInt(seg.dataset.discount, 10)
   );
 
@@ -23,15 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (discountWheel && spinWheelBtn && wheelSegments.length === 6) {
     spinWheelBtn.addEventListener("click", () => {
-      // Önce eski highlight'ları temizle
-      wheelSegments.forEach(seg => seg.classList.remove("active"));
+      // Eski highlight'ları temizle
+      wheelSegments.forEach((seg) => seg.classList.remove("active"));
 
       // Rastgele bir index seç (0–5)
       const idx = Math.floor(Math.random() * wheelSegments.length);
       const selectedDiscount = wheelDiscounts[idx];
       const selectedSegment = wheelSegments[idx];
 
-      // Görsel olarak rastgele döndür (kazanan segmenti göstermek için highlight kullanacağız)
+      // Görsel spin
       const extraSpins = 4 + Math.floor(Math.random() * 3); // 4–6 tur
       const randomOffset = Math.floor(Math.random() * 360);
       wheelRotationBase += extraSpins * 360 + randomOffset;
@@ -39,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
       discountWheel.classList.add("spinning");
       discountWheel.style.transform = `rotate(${wheelRotationBase}deg)`;
 
-      // Spin bittikten sonra kazanan dilimi highlight et
       setTimeout(() => {
         discountWheel.classList.remove("spinning");
 
@@ -54,8 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ======================
   //   YEŞİL ANTİREFLE
- const greenConfigs = {
+  // ======================
+  const greenConfigs = {
     30: {
       uv: 0,
       filter: 30,
@@ -71,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayColor: "rgba(22,163,74,0.16)",
       imgFilter: "brightness(0.85) contrast(0.92) saturate(0.95) blur(0.7px)",
       desc: "Günlük kullanım için dengeli seviye. Refle yansımaları azalır, detaylar daha net görünür.",
-      why: "Hem standart cama göre belirgin fark istiyorum, hem de en pahalı seviyeye çıkmak istemiyorum diyen kullanıcılar için. Ofis + dış mekan karma kullanıma uygun, fiyat/performans seviyesi."
-     ,  price: "₺1300"
+      why: "Hem standart cama göre belirgin fark istiyorum, hem de en pahalı seviyeye çıkmak istemiyorum diyen kullanıcılar için. Ofis + dış mekan karma kullanıma uygun, fiyat/performans seviyesi.",
+      price: "₺1300"
     },
     60: {
       uv: 0,
@@ -80,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayColor: "rgba(22,163,74,0.15)",
       imgFilter: "brightness(0.92) contrast(0.98) saturate(1) blur(0.5px)",
       desc: "Orta-üst segment. Netlik artar, camın varlığını daha az hissedersin.",
-      why: "Ekran başında çalışan, gece araç kullanan veya ışık hassasiyeti olan kişiler için daha konforlu. Uygun bütçe ile premiuma yaklaşan seviye."
-     ,  price: "₺1600"
+      why: "Ekran başında çalışan, gece araç kullanan veya ışık hassasiyeti olan kişiler için daha konforlu. Uygun bütçe ile premiuma yaklaşan seviye.",
+      price: "₺1600"
     },
     90: {
       uv: 50,
@@ -89,8 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayColor: "rgba(22,163,74,0.12)",
       imgFilter: "brightness(1.02) contrast(1.03) saturate(1.02) blur(0.3px)",
       desc: "Yüksek performanslı antirefle. Net, canlı ve yansıması minimum bir görüntü.",
-      why: "“Gözüm yorulmasın, netlikte taviz vermem” diyen kullanıcılar için. Standart ve düşük seviye antirefle camlara göre bariz fark hissedilir, uzun süre kullanımda konfor sağlar."
-     ,  price: "₺2000"
+      why: "“Gözüm yorulmasın, netlikte taviz vermem” diyen kullanıcılar için. Standart ve düşük seviye antirefle camlara göre bariz fark hissedilir, uzun süre kullanımda konfor sağlar.",
+      price: "₺2000"
     },
     99: {
       uv: 99,
@@ -98,10 +94,19 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayColor: "rgba(22,163,74,0.0)",
       imgFilter: "brightness(1) contrast(1.06) saturate(1.03)",
       desc: "En üst seviye. Cam neredeyse görünmez, maksimum netlik ve koruma.",
-      why: "Premium segment, en üst kaliteyi isteyen müşteriler için. Standart camlara göre yansıma neredeyse yok, fotoğrafçılar, tasarımcılar ve ekran başında uzun süre çalışanlar için en konforlu tercih."
-     ,  price: "₺3000"
+      why: "Premium segment, en üst kaliteyi isteyen müşteriler için. Standart camlara göre yansıma neredeyse yok, fotoğrafçılar, tasarımcılar ve ekran başında uzun süre çalışanlar için en konforlu tercih.",
+      price: "₺3000"
     }
   };
+
+  const greenImage = document.getElementById("greenImage");
+  const greenOverlay = document.getElementById("greenOverlay");
+  const greenLabel = document.getElementById("greenLabel");
+  const greenUv = document.getElementById("greenUv");
+  const greenFilter = document.getElementById("greenFilter");
+  const greenDesc = document.getElementById("greenDesc");
+  const greenWhyText = document.getElementById("greenWhyText");
+  const greenPrice = document.getElementById("greenPrice");
 
   // ======================
   //   BLUE CAM
@@ -113,8 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayColor: "rgba(252,211,77,0.16)",
       imgFilter: "brightness(0.8) contrast(0.9) saturate(0.95)",
       desc: "En ucuz blue cam. Ekranı belirgin sarı gösterir, renkler kirli görünür.",
-      why: "Düşük bütçae ve sadece temel koruma isteyen kullanıcılar için. Renk doğruluğu kritik olmayan, sadece hafif mavi ışık kesilmesi istenen durumlarda tercih edilir."
-        ,  price: "₺1400"
+      why: "Düşük bütçe ve sadece temel koruma isteyen kullanıcılar için. Renk doğruluğu kritik olmayan, sadece hafif mavi ışık kesilmesi istenen durumlarda tercih edilir.",
+      price: "₺1400"
     },
     60: {
       uv: 55,
@@ -122,8 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayColor: "rgba(252,211,77,0.14)",
       imgFilter: "brightness(0.9) contrast(0.96) saturate(1)",
       desc: "Orta seviye. Sarılık azalmıştır, renkler daha kabul edilebilir hale gelir.",
-      why: "Uygun fiyatlı ama sürekli bilgisayar/telefon kullanan biri için mantıklı tercih. Ucuz blue camların aşırı sarılığını istemeyen kullanıcıya hitap eder."
-        ,  price: "₺1900"
+      why: "Uygun fiyatlı ama sürekli bilgisayar/telefon kullanan biri için mantıklı tercih. Ucuz blue camların aşırı sarılığını istemeyen kullanıcıya hitap eder.",
+      price: "₺1900"
     },
     90: {
       uv: 75,
@@ -131,8 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayColor: "rgba(252,211,77,0.12)",
       imgFilter: "brightness(1) contrast(1.02) saturate(1.02)",
       desc: "Üst segment. Renkler daha doğru, sarı ton hafif, koruma yüksek.",
-      why: "Freelancer, ofis çalışanı, gamer gibi uzun süre ekran başında olan ve hem renkleri çok bozmadan hem de göz koruması isteyen kullanıcılar için dengeli seçim."
-        ,  price: "₺2600"
+      why: "Freelancer, ofis çalışanı, gamer gibi uzun süre ekran başında olan ve hem renkleri çok bozmadan hem de göz koruması isteyen kullanıcılar için dengeli seçim.",
+      price: "₺2600"
     },
     99: {
       uv: 99,
@@ -140,12 +145,11 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayColor: "rgba(252,211,77,0.0)",
       imgFilter: "brightness(1.08) contrast(1.05) saturate(1.05)",
       desc: "Premium blue cam. Hem yüksek mavi ışık koruması hem de neredeyse doğal beyaz dengesi.",
-      why: "“Gece-gündüz ekran başındayım, hem gözümü korusun hem renkler bozulmasın” diyenler için. Ucuz blue camlara göre sarılık hissi minimum, premium segment ürünü."
-        ,  price: "₺3400"
+      why: "“Gece-gündüz ekran başındayım, hem gözümü korusun hem renkler bozulmasın” diyenler için. Ucuz blue camlara göre sarılık hissi minimum, premium segment ürünü.",
+      price: "₺3800"
     }
   };
 
-  // BLUE DOM
   const blueImage = document.getElementById("blueImage");
   const blueOverlay = document.getElementById("blueOverlay");
   const blueLabel = document.getElementById("blueLabel");
@@ -155,36 +159,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const blueWhyText = document.getElementById("blueWhyText");
   const bluePrice = document.getElementById("bluePrice");
 
-  // ORTAK GÜNCELLEME (YEŞİL / BLUE)
+  // ======================
+  //   ORTAK GÜNCELLEME (YEŞİL / BLUE)
+  // ======================
   function updateSection(type, level) {
     if (type === "green") {
       const cfg = greenConfigs[level];
       if (!cfg) return;
 
-      greenImage.style.filter = cfg.imgFilter;
-      greenOverlay.style.backgroundColor = cfg.overlayColor;
-      greenLabel.textContent = `Yeşil Antirefle %${level}`;
-      greenUv.textContent = `%${cfg.uv}`;
-      greenFilter.textContent = `%${cfg.filter}`;
-      greenDesc.textContent = cfg.desc;
+      if (greenImage) greenImage.style.filter = cfg.imgFilter;
+      if (greenOverlay) greenOverlay.style.backgroundColor = cfg.overlayColor;
+      if (greenLabel) greenLabel.textContent = `Yeşil Antirefle %${level}`;
+      if (greenUv) greenUv.textContent = `%${cfg.uv}`;
+      if (greenFilter) greenFilter.textContent = `%${cfg.filter}`;
+      if (greenDesc) greenDesc.textContent = cfg.desc;
       if (greenWhyText) greenWhyText.textContent = cfg.why;
       if (greenPrice && cfg.price) greenPrice.textContent = cfg.price;
     } else if (type === "blue") {
       const cfg = blueConfigs[level];
       if (!cfg) return;
 
-      blueImage.style.filter = cfg.imgFilter;
-      blueOverlay.style.backgroundColor = cfg.overlayColor;
-      blueLabel.textContent = `Blue Cam %${level}`;
-      blueUv.textContent = `%${cfg.uv}`;
-      blueFilter.textContent = `%${cfg.filter}`;
-      blueDesc.textContent = cfg.desc;
+      if (blueImage) blueImage.style.filter = cfg.imgFilter;
+      if (blueOverlay) blueOverlay.style.backgroundColor = cfg.overlayColor;
+      if (blueLabel) blueLabel.textContent = `Blue Cam %${level}`;
+      if (blueUv) blueUv.textContent = `%${cfg.uv}`;
+      if (blueFilter) blueFilter.textContent = `%${cfg.filter}`;
+      if (blueDesc) blueDesc.textContent = cfg.desc;
       if (blueWhyText) blueWhyText.textContent = cfg.why;
       if (bluePrice && cfg.price) bluePrice.textContent = cfg.price;
     }
   }
 
-  // LEVEL BUTONLARI
   const levelButtons = document.querySelectorAll(".level-btn");
   levelButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -246,16 +251,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // RX DOM
   const rxBrandCards = document.querySelectorAll(".rx-brand-card");
   const rxBrandGrid = document.getElementById("rxBrandGrid");
   const rxDetail = document.getElementById("rxDetail");
   const rxBackBtn = document.getElementById("rxBackBtn");
 
-  const rxBaseImage = document.getElementById("rxBaseImage");
-  const rxFilteredImage = document.getElementById("rxFilteredImage");
-  const rxOverlay = document.getElementById("rxOverlay");
-  const rxFilterLabel = document.getElementById("rxFilterLabel");
+const rxImage = document.getElementById("rxImage");      // TEK FOTO
+const rxOverlay = document.getElementById("rxOverlay");  // SADECE FİLTRE OVERLAY
   const rxBaseLabel = document.getElementById("rxBaseLabel");
   const rxBrandName = document.getElementById("rxBrandName");
   const rxUv = document.getElementById("rxUv");
@@ -272,69 +274,130 @@ document.addEventListener("DOMContentLoaded", () => {
   const rxBadgeFilter = document.getElementById("rxBadgeFilter");
   const rxPrice = document.getElementById("rxPrice");
 
-  function setRxBrand(brandKey) {
-    const cfg = rxConfigs[brandKey];
-    if (!cfg) return;
+  // Slider DOM
+  const rxCompare = document.getElementById("rxCompare");
+  const rxCompareHandle = document.getElementById("rxCompareHandle");
 
-    // Kart active
-    rxBrandCards.forEach((c) => {
-      c.classList.toggle("active", c.dataset.brand === brandKey);
-    });
+function setRxComparePosition(percent) {
+  if (!rxOverlay || !rxCompareHandle) return;
+  const p = Math.min(100, Math.max(0, percent));
+  rxOverlay.style.width = p + "%";
+  rxCompareHandle.style.left = p + "%";
+}
 
-    // Başlık
-    rxDetailTitle.textContent = `${cfg.brandName} Cam`;
 
-    // Filtresiz taraf
-    if (rxBaseImage) {
-      rxBaseImage.style.filter = "brightness(0.82) contrast(0.82) saturate(0.9) blur(0.4px)";
-    }
-    if (rxBaseLabel) {
-      rxBaseLabel.textContent = "Standart Cam / Filtresiz";
-    }
+  // Başlangıç orta
+  setRxComparePosition(0);
 
-    // Filtreli taraf
-    rxFilteredImage.style.filter = cfg.filteredImgFilter;
-    rxOverlay.style.backgroundColor = cfg.overlayColor;
-    rxFilterLabel.textContent = `${cfg.brandName} Filtreli`;
+  if (rxCompare) {
+    let dragging = false;
 
-    // Alt veriler
-    rxBrandName.textContent = cfg.brandName;
-    rxUv.textContent = `%${cfg.uv}`;
-    rxFilterRate.textContent = `%${cfg.filterRate}`;
-    rxDesc.textContent = cfg.desc;
-    if (rxWhyText) rxWhyText.textContent = cfg.why;
-    if (rxStarLabel) rxStarLabel.textContent = cfg.starsLabel || "";
-    if (rxPrice && cfg.price) rxPrice.textContent = cfg.price;
-
-    // Görsel üstü badge metinleri
-    if (rxBadgeUv) {
-      rxBadgeUv.textContent = `UV / Mavi Işık Koruma: %${cfg.uv}`;
-    }
-    if (rxBadgeFilter) {
-      rxBadgeFilter.textContent = `Renk Doğruluğu / Kontrast: %${cfg.filterRate}`;
+    function updateFromClientX(clientX) {
+      const rect = rxCompare.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const percent = (x / rect.width) * 100;
+      setRxComparePosition(percent);
     }
 
-    // Zeiss premium ise rozet/ödül satırı göster
-    if (cfg.premium) {
-      rxPremiumRow.classList.remove("d-none");
-      rxAwardsRow.classList.remove("d-none");
-      rxStarsRow.classList.remove("d-none");
-      if (rxStar5) rxStar5.classList.add("premium-star");
-    } else {
-      rxPremiumRow.classList.add("d-none");
-      rxAwardsRow.classList.add("d-none");
-      rxStarsRow.classList.add("d-none");
-      if (rxStar5) rxStar5.classList.remove("premium-star");
+    function onPointerDown(e) {
+      dragging = true;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      updateFromClientX(clientX);
     }
+
+    function onPointerMove(e) {
+      if (!dragging) return;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      updateFromClientX(clientX);
+    }
+
+    function onPointerUp() {
+      dragging = false;
+    }
+
+    rxCompare.addEventListener("mousedown", onPointerDown);
+    rxCompare.addEventListener("touchstart", onPointerDown, { passive: true });
+    window.addEventListener("mousemove", onPointerMove);
+    window.addEventListener("touchmove", onPointerMove, { passive: true });
+    window.addEventListener("mouseup", onPointerUp);
+    window.addEventListener("touchend", onPointerUp);
   }
+
+function setRxBrand(brandKey) {
+  const cfg = rxConfigs[brandKey];
+  if (!cfg) return;
+
+  // Kart active
+  rxBrandCards.forEach((c) => {
+    c.classList.toggle("active", c.dataset.brand === brandKey);
+  });
+
+  // Başlık
+  if (rxDetailTitle) rxDetailTitle.textContent = `${cfg.brandName} Cam`;
+
+  // TEK FOTOĞRAF: filtresiz taraf hafif “kötü” (mat, düşük kontrast, hafif blur)
+  if (rxImage) {
+    rxImage.style.filter =
+      "brightness(0.82) contrast(0.86) saturate(0.9) blur(0.45px)";
+  }
+
+  if (rxBaseLabel) {
+    rxBaseLabel.textContent =
+      "Çizginin solu: Filtreli RX Alanı / Sağı: Standart Cam";
+  }
+
+  // FİLTRE OVERLAY: markaya göre ton, ama her zaman daha kaliteli görünüm
+  if (rxOverlay) {
+    // Renk tonu markaya göre:
+    rxOverlay.style.backgroundColor =
+      cfg.overlayColor || "rgba(37,99,235,0.32)";
+
+    // Kaliteli cam hissi için ekstra netlik (backdrop-filter ile alan bazlı)
+    rxOverlay.style.backdropFilter =
+      "brightness(1.08) contrast(1.16) saturate(1.12)";
+  }
+
+  // Alt veriler
+  if (rxBrandName) rxBrandName.textContent = cfg.brandName;
+  if (rxUv) rxUv.textContent = `%${cfg.uv}`;
+  if (rxFilterRate) rxFilterRate.textContent = `%${cfg.filterRate}`;
+  if (rxDesc) rxDesc.textContent = cfg.desc;
+  if (rxWhyText) rxWhyText.textContent = cfg.why;
+  if (rxStarLabel) rxStarLabel.textContent = cfg.starsLabel || "";
+  if (rxPrice && cfg.price) rxPrice.textContent = cfg.price;
+
+  if (rxBadgeUv) {
+    rxBadgeUv.textContent = `UV / Mavi Işık Koruma: %${cfg.uv}`;
+  }
+  if (rxBadgeFilter) {
+    rxBadgeFilter.textContent = `Renk Doğruluğu / Kontrast: %${cfg.filterRate}`;
+  }
+
+  // Zeiss premium ise rozet/ödül satırı göster
+  if (cfg.premium) {
+    rxPremiumRow && rxPremiumRow.classList.remove("d-none");
+    rxAwardsRow && rxAwardsRow.classList.remove("d-none");
+    rxStarsRow && rxStarsRow.classList.remove("d-none");
+    rxStar5 && rxStar5.classList.add("premium-star");
+  } else {
+    rxPremiumRow && rxPremiumRow.classList.add("d-none");
+    rxAwardsRow && rxAwardsRow.classList.add("d-none");
+    rxStarsRow && rxStarsRow.classList.add("d-none");
+    rxStar5 && rxStar5.classList.remove("premium-star");
+  }
+
+  // Marka değişince her zaman sıfırdan başlasın (tam filtresiz görüntü)
+  setRxComparePosition(0);
+}
+
+
 
   function openRxDetail(brandKey) {
     setRxBrand(brandKey);
-    rxBrandGrid.classList.add("d-none");
-    rxDetail.classList.remove("d-none");
+    if (rxBrandGrid) rxBrandGrid.classList.add("d-none");
+    if (rxDetail) rxDetail.classList.remove("d-none");
   }
 
-  // RX kart tıklamaları
   rxBrandCards.forEach((card) => {
     card.addEventListener("click", () => {
       const brandKey = card.dataset.brand;
@@ -342,11 +405,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // RX geri butonu
   if (rxBackBtn) {
     rxBackBtn.addEventListener("click", () => {
-      rxDetail.classList.add("d-none");
-      rxBrandGrid.classList.remove("d-none");
+      if (rxDetail) rxDetail.classList.add("d-none");
+      if (rxBrandGrid) rxBrandGrid.classList.remove("d-none");
     });
   }
 
@@ -384,17 +446,18 @@ document.addEventListener("DOMContentLoaded", () => {
       showMainApp();
 
       if (useCase === "daily") {
-        // Günlük kullanım: Yeşil antirefle orta seviye
         goToTab("green");
-        const btn = document.querySelector('.level-btn[data-type="green"][data-level="45"]');
+        const btn = document.querySelector(
+          '.level-btn[data-type="green"][data-level="45"]'
+        );
         if (btn) btn.click();
       } else if (useCase === "tech") {
-        // Bilgisayar / telefon: Blue cam yüksek seviye
         goToTab("blue");
-        const btn = document.querySelector('.level-btn[data-type="blue"][data-level="90"]');
+        const btn = document.querySelector(
+          '.level-btn[data-type="blue"][data-level="90"]'
+        );
         if (btn) btn.click();
       } else if (useCase === "driver") {
-        // Işık hassasiyeti / yol: RX Zeiss premium
         goToTab("rx");
         openRxDetail("zeiss");
       }
@@ -419,6 +482,31 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         document.exitFullscreen();
       }
+    });
+  }
+
+  // ======================
+  //   İSKONTO HESAPLAMA (FOOTER)
+  // ======================
+  const discPrice = document.getElementById("discPrice");
+  const discRate = document.getElementById("discRate");
+  const discCalcBtn = document.getElementById("discCalcBtn");
+  const discResult = document.getElementById("discResult");
+
+  if (discCalcBtn) {
+    discCalcBtn.addEventListener("click", () => {
+      const price = parseFloat(discPrice.value);
+      const rate = parseFloat(discRate.value);
+
+      if (!price || !rate) {
+        discResult.textContent = "Lütfen fiyat ve oran girin.";
+        discResult.classList.remove("d-none");
+        return;
+      }
+
+      const discounted = price - price * (rate / 100);
+      discResult.textContent = `İskontolu Fiyat: ₺${discounted.toFixed(2)}`;
+      discResult.classList.remove("d-none");
     });
   }
 });

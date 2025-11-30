@@ -78,35 +78,7 @@
       </div>
     </div>
           <!-- ŞANS ÇARKI – EK İSKONTO -->
-      <hr class="my-3 text-secondary opacity-25">
 
-      <div class="row g-3 align-items-center mt-1">
-        <div class="col-md-5">
-          <h6 class="mb-1">Şans Çarkı – Ek İskonto</h6>
-          <p class="small text-muted mb-2">
-            Camını seçmeden önce çarkı çevir, çıkan oran kadar <strong>ekstra iskonto</strong> uygula.
-          </p>
-          <button class="btn btn-sm btn-outline-info px-3" id="spinWheelBtn">
-            Çarkı Çevir
-          </button>
-          <div class="small mt-2" id="wheelResult"></div>
-        </div>
-
-        <div class="col-md-7">
-          <div class="discount-wheel-wrap">
-            <div class="discount-wheel" id="discountWheel">
-              <div class="wheel-center">ŞANS</div>
-
-              <div class="wheel-segment" data-discount="5"  style="--i:0">5%</div>
-              <div class="wheel-segment" data-discount="10" style="--i:1">10%</div>
-              <div class="wheel-segment" data-discount="20" style="--i:2">20%</div>
-              <div class="wheel-segment" data-discount="25" style="--i:3">25%</div>
-              <div class="wheel-segment" data-discount="30" style="--i:4">30%</div>
-              <div class="wheel-segment" data-discount="45" style="--i:5">45%</div>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- /ŞANS ÇARKI -->
 
   </div>
@@ -375,113 +347,112 @@
             </div>
 
             <!-- 2) SEÇİLDİĞİNDE AÇILAN DETAY EKRANI -->
-            <div id="rxDetail" class="mt-4 d-none">
-              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
-                <div>
-                  <h5 class="mb-0" id="rxDetailTitle">Nikon RX Cam</h5>
-                  <div class="rx-stars small mt-1" id="rxStarsRow">
-                    <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" id="rxStar5">★</span>
-                    <span class="ms-2" id="rxStarLabel">Yüksek performans cam</span>
-                  </div>
-                </div>
-                <button class="btn btn-outline-light btn-sm rounded-pill" id="rxBackBtn">
-                  ← RX Camlara Dön
-                </button>
-              </div>
-
-              <!-- Zeiss için özel premium rozet ve ödül satırı -->
-              <div id="rxPremiumRow" class="premium-info d-none mb-3">
-                <span class="premium-pill">⭐ En iyi cam markası segmenti</span>
-              </div>
-
-              <div id="rxAwardsRow" class="awards-row d-none mb-3">
-                <div class="award-pill">
-                  <span class="award-icon">🏆</span>
-                  <span>Lens Product of the Year*</span>
-                </div>
-                <div class="award-pill">
-                  <span class="award-icon">🥇</span>
-                  <span>Red Dot “Best of the Best”*</span>
-                </div>
-                <div class="award-pill">
-                  <span class="award-icon">🌍</span>
-                  <span>Uluslararası ödüllü cam teknolojisi</span>
-                </div>
-              </div>
-
-              <div class="row g-4 align-items-stretch">
-                <!-- Filtresiz -->
-                <div class="col-md-6">
-                  <h6 class="mb-2">Standart Cam / Filtresiz</h6>
-                  <div class="glass-frame rx-frame">
-                    <img
-                      src="img.jpg"
-                      alt="Filtresiz görüntü"
-                      class="glass-image"
-                      id="rxBaseImage"
-                    />
-                    <span class="glass-label badge" id="rxBaseLabel">
-                      Standart Cam / Filtresiz
-                    </span>
-                  </div>
-                </div>
-
-                <!-- Filtreli -->
-                <div class="col-md-6">
-                  <h6 class="mb-2">Filtreli RX Cam</h6>
-                  <div class="glass-frame rx-frame">
-                    <img
-                      src="img.jpg"
-                      alt="Filtreli görüntü"
-                      class="glass-image"
-                      id="rxFilteredImage"
-                    />
-                    <div class="glass-overlay" id="rxOverlay"></div>
-
-                    <!-- ÜST BİLGİ ETİKETLERİ -->
-                    <div class="rx-badges">
-                      <div class="rx-badge" id="rxBadgeUv">UV / Mavi Işık Koruma: %99</div>
-                      <div class="rx-badge" id="rxBadgeFilter">Renk Doğruluğu / Kontrast: %95</div>
-                    </div>
-
-                    <span class="glass-label badge" id="rxFilterLabel">
-                      RX Filtreli
-                    </span>
-
-                    <!-- RX fiyat baloncuğu -->
-                    <div class="price-bubble rx-bubble" id="rxPrice">
-                      ₺3.000 – ₺3.800
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- RX Bilgileri -->
-              <div class="row mt-3 small">
-                <div class="col-md-4">
-                  <span class="text-muted d-block">Marka</span>
-                  <span class="fw-semibold" id="rxBrandName">Nikon RX</span>
-                </div>
-                <div class="col-md-4">
-                  <span class="text-muted d-block">UV / Mavi Işık Koruma</span>
-                  <span class="fw-semibold" id="rxUv">-%</span>
-                </div>
-                <div class="col-md-4">
-                  <span class="text-muted d-block">Renk Doğruluğu / Kontrast</span>
-                  <span class="fw-semibold" id="rxFilterRate">-%</span>
-                </div>
-              </div>
-
-              <p class="small text-muted mt-2 mb-2" id="rxDesc">
-                Seçilen RX camın detaylı açıklaması burada görünecek.
-              </p>
-
-              <!-- RX: NEDEN SEÇMELİ? -->
-              <div class="highlight-box mt-1" id="rxWhyBox">
-                <h6 class="highlight-title mb-1">Bu camı neden seçmeli?</h6>
-                <p class="small mb-0" id="rxWhyText"></p>
-              </div>
+            <!-- 2) SEÇİLDİĞİNDE AÇILAN DETAY EKRANI -->
+      <div id="rxDetail" class="mt-4 d-none">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <div>
+            <h5 class="mb-0" id="rxDetailTitle">Nikon RX Cam</h5>
+            <div class="rx-stars small mt-1" id="rxStarsRow">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" id="rxStar5">★</span>
+              <span class="ms-2" id="rxStarLabel">Yüksek performans cam</span>
             </div>
+          </div>
+          <button class="btn btn-outline-light btn-sm rounded-pill" id="rxBackBtn">
+            ← RX Camlara Dön
+          </button>
+        </div>
+
+        <!-- Zeiss için özel premium rozet ve ödül satırı -->
+        <div id="rxPremiumRow" class="premium-info d-none mb-3">
+          <span class="premium-pill">⭐ En iyi cam markası segmenti</span>
+        </div>
+
+        <div id="rxAwardsRow" class="awards-row d-none mb-3">
+          <div class="award-pill">
+            <span class="award-icon">🏆</span>
+            <span>Lens Product of the Year*</span>
+          </div>
+          <div class="award-pill">
+            <span class="award-icon">🥇</span>
+            <span>Red Dot “Best of the Best”*</span>
+          </div>
+          <div class="award-pill">
+            <span class="award-icon">🌍</span>
+            <span>Uluslararası ödüllü cam teknolojisi</span>
+          </div>
+        </div>
+
+<div class="row g-4 align-items-stretch">
+  <div class="col-12">
+    <h6 class="mb-2">Çizgiden sola doğru: Filtreli RX Cam, sağ taraf: Standart Cam</h6>
+
+    <div class="rx-compare-wrap">
+      <div class="glass-frame rx-frame rx-compare" id="rxCompare">
+        <!-- TEK FOTOĞRAF -->
+        <img
+          src="ai-generated-8028291.png"
+          alt="RX cam sahne görüntüsü"
+          class="glass-image"
+          id="rxImage"
+        />
+
+        <!-- YALNIZCA FİLTRE OLAN OVERLAY (TEK FOTO ÜZERİNDE) -->
+        <div class="rx-filter-overlay" id="rxOverlay"></div>
+
+        <!-- KAYDIRMA ÇUBUĞU -->
+        <div class="rx-compare-handle" id="rxCompareHandle">
+          <div class="rx-handle-line"></div>
+          <div class="rx-handle-knob">↔</div>
+        </div>
+
+        <!-- ÜST BİLGİ ETİKETLERİ -->
+        <div class="rx-badges">
+          <div class="rx-badge" id="rxBadgeUv">UV / Mavi Işık Koruma: %99</div>
+          <div class="rx-badge" id="rxBadgeFilter">Renk Doğruluğu / Kontrast: %95</div>
+        </div>
+
+        <!-- ALT ETİKET -->
+        <span class="glass-label badge" id="rxBaseLabel">
+          Çizginin solu: Filtreli RX Alanı / Sağı: Standart Cam
+        </span>
+
+        <!-- FİYAT BALONU -->
+        <div class="price-bubble rx-bubble" id="rxPrice">
+          ₺3.000 – ₺3.800
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        <!-- RX Bilgileri -->
+        <div class="row mt-3 small">
+          <div class="col-md-4">
+            <span class="text-muted d-block">Marka</span>
+            <span class="fw-semibold" id="rxBrandName">Nikon RX</span>
+          </div>
+          <div class="col-md-4">
+            <span class="text-muted d-block">UV / Mavi Işık Koruma</span>
+            <span class="fw-semibold" id="rxUv">-%</span>
+          </div>
+          <div class="col-md-4">
+            <span class="text-muted d-block">Renk Doğruluğu / Kontrast</span>
+            <span class="fw-semibold" id="rxFilterRate">-%</span>
+          </div>
+        </div>
+
+        <p class="small text-muted mt-2 mb-2" id="rxDesc">
+          Seçilen RX camın detaylı açıklaması burada görünecek.
+        </p>
+
+        <!-- RX: NEDEN SEÇMELİ? -->
+        <div class="highlight-box mt-1" id="rxWhyBox">
+          <h6 class="highlight-title mb-1">Bu camı neden seçmeli?</h6>
+          <p class="small mb-0" id="rxWhyText"></p>
+        </div>
+      </div>
+
 
           </div>
         </div>
