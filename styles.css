@@ -17,7 +17,6 @@ body.bg-body {
   opacity: 0.85;
 }
 
-/* Tablet odaklı ana wrapper */
 .app-wrapper {
   max-width: 1240px;
 }
@@ -52,7 +51,7 @@ body.bg-body {
   color: #f9fafb;
 }
 
-/* Önizleme alanı (büyütüldü) */
+/* Önizleme */
 .glass-frame {
   position: relative;
   width: 100%;
@@ -71,7 +70,7 @@ body.bg-body {
   transition: filter 0.4s ease;
 }
 
-/* Cam efekti overlay */
+/* Overlay */
 .glass-overlay {
   position: absolute;
   inset: 0;
@@ -112,7 +111,7 @@ body.bg-body {
   border-radius: 999px;
 }
 
-/* Nav pill biraz daha kalın dursun */
+/* Nav pills */
 .nav-pills .nav-link {
   border-radius: 999px;
   font-weight: 500;
@@ -128,6 +127,154 @@ body.bg-body {
   border-color: rgba(191,219,254,0.6);
 }
 
+/* RX marka kartları */
+.rx-brand-card {
+  position: relative;
+  background: rgba(15,23,42,0.95);
+  border-radius: 18px;
+  border: 1px solid rgba(148,163,184,0.4);
+  padding: 10px 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.rx-brand-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(15,23,42,0.9);
+}
+
+.rx-brand-card.active {
+  border-color: #facc15;
+  box-shadow: 0 16px 40px rgba(250,204,21,0.35);
+}
+
+/* Zeiss premium ribbon */
+.premium-ribbon {
+  position: absolute;
+  top: 8px;
+  right: -18px;
+  background: linear-gradient(135deg, #facc15, #f97316);
+  color: #0f172a;
+  font-size: 0.65rem;
+  padding: 3px 16px;
+  transform: rotate(15deg);
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(234,179,8,0.6);
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.rx-logo-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 0.9rem;
+}
+
+/* Marka arka plan renkleri */
+.nikon-bg {
+  background: #facc15;
+}
+
+.kodak-bg {
+  background: #b91c1c;
+  color: #fee2e2;
+}
+
+.zeiss-bg {
+  background: #1d4ed8;
+  color: #eff6ff;
+}
+
+.rx-logo-text {
+  text-transform: uppercase;
+}
+
+.rx-frame {
+  margin-bottom: 0.5rem;
+}
+
+/* ÖNE ÇIKAN ÖZELLİK KUTUSU */
+.highlight-box {
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: radial-gradient(circle at top left, rgba(34,197,94,0.28), transparent 55%),
+              rgba(15,23,42,0.95);
+  border: 1px solid rgba(74,222,128,0.5);
+  box-shadow: 0 12px 30px rgba(22,163,74,0.35);
+}
+
+#blueWhyBox {
+  background: radial-gradient(circle at top left, rgba(59,130,246,0.30), transparent 55%),
+              rgba(15,23,42,0.95);
+  border-color: rgba(129,140,248,0.65);
+  box-shadow: 0 12px 30px rgba(59,130,246,0.45);
+}
+
+#rxWhyBox {
+  background: radial-gradient(circle at top left, rgba(234,179,8,0.35), transparent 55%),
+              rgba(15,23,42,0.95);
+  border-color: rgba(234,179,8,0.7);
+  box-shadow: 0 12px 30px rgba(234,179,8,0.5);
+}
+
+.highlight-title {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fefce8;
+}
+
+/* RX yıldız satırı */
+.rx-stars .star {
+  color: #fde047;
+  font-size: 0.9rem;
+}
+
+/* Premium info pill */
+.premium-info .premium-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #facc15, #f97316);
+  color: #0f172a;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Ödül satırı */
+.awards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.award-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(15,23,42,0.9);
+  border: 1px solid rgba(250,204,21,0.7);
+  font-size: 0.78rem;
+  color: #fefce8;
+}
+
+.award-icon {
+  font-size: 0.9rem;
+}
+
 /* Küçük ekran uyumu */
 @media (max-width: 767.98px) {
   .glass-card {
@@ -137,4 +284,242 @@ body.bg-body {
   .glass-frame {
     aspect-ratio: 4 / 3;
   }
+
+  .rx-brand-card {
+    border-radius: 14px;
+  }
+}
+
+.rx-badge:first-child {
+  border-color: rgba(56,189,248,0.7); /* UV için hafif mavi vurgu */
+}
+
+.rx-badge:last-child {
+  border-color: rgba(250,204,21,0.7); /* Kontrast için sarı vurgu */
+}
+/* Giriş ekranı kartı */
+.intro-card {
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+/* Giriş ekranı kartı */
+.intro-card {
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+/* Giriş seçenekleri */
+.intro-option {
+  background: rgba(15,23,42,0.9);
+  border-radius: 16px;
+  padding: 12px 14px;
+  border: 1px solid rgba(148,163,184,0.6);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.intro-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(15,23,42,0.9);
+  border-color: rgba(96,165,250,0.9);
+}
+
+.intro-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  background: rgba(59,130,246,0.18);
+  color: #bfdbfe;
+  margin-bottom: 6px;
+}
+
+/* RX görsel üstü etiketler (zaten yoksa ekle) */
+.rx-badges {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.rx-badge {
+  background: rgba(15,23,42,0.88);
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  color: #e5e7eb;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.55);
+  white-space: nowrap;
+}
+/* FOTOĞRAF ÜZERİNDE FİYAT BALONCUĞU */
+.price-bubble {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.85);
+  border: 1px solid rgba(15,23,42,0.9);
+  z-index: 3;
+}
+
+/* Yeşil cam fiyat balonu */
+.green-bubble {
+  background: radial-gradient(circle at top left, rgba(34,197,94,0.95), rgba(21,128,61,0.95));
+  color: #ecfdf5;
+}
+
+/* Blue cam fiyat balonu */
+.blue-bubble {
+  background: radial-gradient(circle at top left, rgba(37,99,235,0.95), rgba(30,64,175,0.95));
+  color: #eff6ff;
+}
+
+/* RX cam fiyat balonu */
+.rx-bubble {
+  background: radial-gradient(circle at top left, rgba(234,179,8,0.97), rgba(161,98,7,0.97));
+  color: #fefce8;
+}
+/* İskonto Hesaplama Kutusu */
+.discount-box {
+  background: rgba(15,23,42,0.85);
+  border: 1px solid rgba(148,163,184,0.35);
+  border-radius: 14px;
+  padding: 12px 14px;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+}
+
+.disc-input {
+  background: rgba(30,41,59,0.85);
+  color: #f9fafb;
+  border: 1px solid rgba(148,163,184,0.35);
+}
+
+.disc-input::placeholder {
+  color: #cbd5e1;
+}
+
+.discount-result {
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(34,197,94,0.22);
+  border: 1px solid rgba(34,197,94,0.5);
+  color: #bbf7d0;
+  font-weight: 600;
+}
+/* ŞANS ÇARKI – EK İSKONTO (YENİ) */
+.discount-wheel-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0 4px;
+}
+
+.discount-wheel {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 2px solid rgba(148,163,184,0.6);
+  background: radial-gradient(circle at center, #0b1120 0, #020617 45%, #000 100%);
+  box-shadow: 0 18px 40px rgba(15,23,42,0.95);
+  transition: transform 2.4s cubic-bezier(0.18, 0.8, 0.15, 1);
+  overflow: hidden;
+}
+
+/* İçteki parlak katman */
+.discount-wheel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from -90deg,
+    rgba(56,189,248,0.14),
+    rgba(34,197,94,0.18),
+    rgba(245,158,11,0.18),
+    rgba(56,189,248,0.14)
+  );
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.discount-wheel.spinning {
+  box-shadow: 0 24px 60px rgba(37,99,235,0.85);
+}
+
+/* Merkezde küçük button-look */
+.wheel-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle at top, #22c55e, #16a34a);
+  border: 2px solid #bbf7d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #f9fafb;
+  text-shadow: 0 0 6px rgba(0,0,0,0.9);
+  box-shadow: 0 12px 30px rgba(22,163,74,0.7);
+}
+
+/* Segment yazıları: 6 dilim, 60 derece aralıklı */
+.wheel-segment {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #e5e7eb;
+  text-shadow: 0 0 6px rgba(0,0,0,0.9);
+  transform-origin: 0% -50%;
+  transform: rotate(calc(var(--i) * 60deg)) translate(0, -54%);
+  transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* Kazanan dilim highlight */
+.wheel-segment.active {
+  color: #facc15;
+  text-shadow: 0 0 10px rgba(250,204,21,0.9);
+}
+
+/* Kazanan dilimin arka wedge'i */
+.wheel-segment.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 110%;
+  height: 120%;
+  transform: translateY(-50%);
+  background: radial-gradient(circle at right, rgba(250,204,21,0.45), transparent 65%);
+  z-index: -1;
+}
+
+/* Sonuç yazısı */
+#wheelResult {
+  min-height: 1.2rem;
+  color: #bbf7d0;
+  font-weight: 500;
 }

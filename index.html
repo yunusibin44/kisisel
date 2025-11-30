@@ -16,15 +16,108 @@
 </head>
 <body class="bg-body">
 
-  <div class="app-wrapper container-fluid py-3">
+  <!-- İLK AÇILIŞ EKRANI (MESLEK / KULLANIM SEÇİMİ) -->
+  <div id="introScreen" class="container-md py-3">
+    <div class="card glass-card intro-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+          <div>
+            <h5 class="mb-1">Size en uygun camı birlikte bulalım</h5>
+            <p class="small text-muted mb-0">
+              Kendinize en yakın kullanım senaryosunu seçin, sizi direkt doğru cama yönlendireyim.
+            </p>
+          </div>
+          <button class="btn btn-sm btn-outline-light" id="introSkipBtn">
+            Tüm camları incele
+          </button>
+        </div>
+
+        <div class="row g-3">
+          <!-- Günlük kullanım -->
+          <div class="col-md-4">
+            <div
+              class="intro-option"
+              data-use-case="daily"
+            >
+              <div class="intro-badge">Günlük Kullanım</div>
+              <h6 class="mb-1">Ev / günlük kullanım için gözlük alıyorum</h6>
+              <p class="small mb-0 text-muted">
+                Teknolojiyle çok iç içe değilim, <strong>uygun fiyatlı ama kaliteli</strong> cam görmek istiyorum.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bilgisayar / Teknoloji -->
+          <div class="col-md-4">
+            <div
+              class="intro-option"
+              data-use-case="tech"
+            >
+              <div class="intro-badge">Bilgisayar / Telefon</div>
+              <h6 class="mb-1">Bilgisayar / telefon başında çok vakit geçiriyorum</h6>
+              <p class="small mb-0 text-muted">
+                Ekran ışığı beni yoruyor, <strong>mavi ışık korumalı (Blue Cam)</strong> çözüm istiyorum.
+              </p>
+            </div>
+          </div>
+
+          <!-- Işık rahatsızlığı / uzun yol -->
+          <div class="col-md-4">
+            <div
+              class="intro-option"
+              data-use-case="driver"
+            >
+              <div class="intro-badge">Işık Hassasiyeti / Yol</div>
+              <h6 class="mb-1">Uzun yol sürücüsüyüm / ışığa hassasiyetim var</h6>
+              <p class="small mb-0 text-muted">
+                Gece farlar, güneş ve yansımalar rahatsız ediyor; <strong>maksimum konforlu RX cam</strong> istiyorum.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+          <!-- ŞANS ÇARKI – EK İSKONTO -->
+      <hr class="my-3 text-secondary opacity-25">
+
+      <div class="row g-3 align-items-center mt-1">
+        <div class="col-md-5">
+          <h6 class="mb-1">Şans Çarkı – Ek İskonto</h6>
+          <p class="small text-muted mb-2">
+            Camını seçmeden önce çarkı çevir, çıkan oran kadar <strong>ekstra iskonto</strong> uygula.
+          </p>
+          <button class="btn btn-sm btn-outline-info px-3" id="spinWheelBtn">
+            Çarkı Çevir
+          </button>
+          <div class="small mt-2" id="wheelResult"></div>
+        </div>
+
+        <div class="col-md-7">
+          <div class="discount-wheel-wrap">
+            <div class="discount-wheel" id="discountWheel">
+              <div class="wheel-center">ŞANS</div>
+
+              <div class="wheel-segment" data-discount="5"  style="--i:0">5%</div>
+              <div class="wheel-segment" data-discount="10" style="--i:1">10%</div>
+              <div class="wheel-segment" data-discount="20" style="--i:2">20%</div>
+              <div class="wheel-segment" data-discount="25" style="--i:3">25%</div>
+              <div class="wheel-segment" data-discount="30" style="--i:4">30%</div>
+              <div class="wheel-segment" data-discount="45" style="--i:5">45%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /ŞANS ÇARKI -->
+
+  </div>
+  <!-- /İLK AÇILIŞ EKRANI -->
+
+  <!-- ASIL UYGULAMA (BAŞTA GİZLİ) -->
+  <div id="mainApp" class="app-wrapper container-fluid py-3 d-none">
     <!-- HEADER -->
     <header class="mb-3">
       <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
         <div>
-          <h1 class="app-title mb-1">Cam Tanıtım Paneli</h1>
-          <p class="app-subtitle mb-0">
-            Aynı sahnede farklı cam kalitelerini müşteriye canlı göster.
-          </p>
         </div>
         <button class="btn btn-outline-light btn-sm rounded-pill shadow-sm" id="fullscreenBtn">
           Tam Ekran
@@ -32,7 +125,7 @@
       </div>
     </header>
 
-    <!-- TABS -->
+    <!-- ÜST TABS -->
     <ul class="nav nav-pills nav-fill mb-3" id="camTabs" role="tablist">
       <li class="nav-item" role="presentation">
         <button
@@ -62,6 +155,20 @@
           Blue Cam
         </button>
       </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="rx-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#rx-pane"
+          type="button"
+          role="tab"
+          aria-controls="rx-pane"
+          aria-selected="false"
+        >
+          RX Camlar
+        </button>
+      </li>
     </ul>
 
     <!-- TAB CONTENT -->
@@ -80,7 +187,6 @@
               <!-- PREVIEW -->
               <div class="col-md-7">
                 <div class="glass-frame" id="greenFrame">
-                  <!-- İKİ CAMDA DA AYNI GÖRSEL -->
                   <img
                     src="img.jpg"
                     alt="Camdan görüntü"
@@ -91,6 +197,10 @@
                   <span class="glass-label badge" id="greenLabel">
                     Yeşil Antirefle %30
                   </span>
+                  <!-- Fiyat baloncuğu -->
+                  <div class="price-bubble green-bubble" id="greenPrice">
+                   1000₺
+                  </div>
                 </div>
               </div>
 
@@ -101,7 +211,6 @@
                   Tüm camlarda sahne aynı, sadece geçtiği camın kalitesi ve netliği değişiyor.
                 </p>
 
-                <!-- Seviye butonları -->
                 <div class="btn-group flex-wrap w-100 mb-3" role="group" aria-label="Yeşil antirefle seviyeleri">
                   <button type="button" class="btn btn-outline-success level-btn active"
                           data-type="green" data-level="30">%30</button>
@@ -111,11 +220,10 @@
                           data-type="green" data-level="60">%60</button>
                   <button type="button" class="btn btn-outline-success level-btn"
                           data-type="green" data-level="90">%90</button>
-                  <button type="button" class="btn btn-success level-btn"
+                  <button type="button" class="btn btn-outline-success level-btn"
                           data-type="green" data-level="99">%99</button>
                 </div>
 
-                <!-- UV / Filtre bilgileri -->
                 <dl class="row small mb-2">
                   <dt class="col-6 text-muted">UV Koruma</dt>
                   <dd class="col-6 fw-semibold" id="greenUv">-%</dd>
@@ -124,9 +232,15 @@
                   <dd class="col-6 fw-semibold" id="greenFilter">-%</dd>
                 </dl>
 
-                <p class="small mb-0 text-muted" id="greenDesc">
+                <p class="small mb-2 text-muted" id="greenDesc">
                   Seçilen cam için açıklama burada görünecek.
                 </p>
+
+                <!-- YEŞİL: NEDEN SEÇMELİ? -->
+                <div class="highlight-box mt-2" id="greenWhyBox">
+                  <h6 class="highlight-title mb-1">Bu camı neden seçmeli?</h6>
+                  <p class="small mb-0" id="greenWhyText"></p>
+                </div>
               </div>
             </div>
           </div>
@@ -156,6 +270,10 @@
                   <span class="glass-label badge" id="blueLabel">
                     Blue Cam %30
                   </span>
+                  <!-- Fiyat baloncuğu -->
+                  <div class="price-bubble blue-bubble" id="bluePrice">
+                    ₺1.800 – ₺2.400
+                  </div>
                 </div>
               </div>
 
@@ -166,7 +284,6 @@
                   Ucuz blue cam sarı ve kirli gösterirken, kalite arttıkça sarılık azalır, görüntü beyaza yaklaşır.
                 </p>
 
-                <!-- Seviye butonları -->
                 <div class="btn-group flex-wrap w-100 mb-3" role="group" aria-label="Blue cam seviyeleri">
                   <button type="button" class="btn btn-outline-primary level-btn active"
                           data-type="blue" data-level="30">%30</button>
@@ -174,11 +291,10 @@
                           data-type="blue" data-level="60">%60</button>
                   <button type="button" class="btn btn-outline-primary level-btn"
                           data-type="blue" data-level="90">%90</button>
-                  <button type="button" class="btn btn-primary level-btn"
+                  <button type="button" class="btn btn-outline-primary level-btn"
                           data-type="blue" data-level="99">%99</button>
                 </div>
 
-                <!-- UV / Filtre bilgileri -->
                 <dl class="row small mb-2">
                   <dt class="col-6 text-muted">UV / Mavi Işık Koruma</dt>
                   <dd class="col-6 fw-semibold" id="blueUv">-%</dd>
@@ -187,11 +303,186 @@
                   <dd class="col-6 fw-semibold" id="blueFilter">-%</dd>
                 </dl>
 
-                <p class="small mb-0 text-muted" id="blueDesc">
+                <p class="small mb-2 text-muted" id="blueDesc">
                   Seçilen blue cam için açıklama burada görünecek.
                 </p>
+
+                <!-- BLUE: NEDEN SEÇMELİ? -->
+                <div class="highlight-box mt-2" id="blueWhyBox">
+                  <h6 class="highlight-title mb-1">Bu camı neden seçmeli?</h6>
+                  <p class="small mb-0" id="blueWhyText"></p>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RX CAMLAR -->
+      <div
+        class="tab-pane fade"
+        id="rx-pane"
+        role="tabpanel"
+        aria-labelledby="rx-tab"
+      >
+        <div class="card glass-card mb-4">
+          <div class="card-body">
+            <div class="mb-3">
+              <h5 class="mb-1">RX Camlar – Marka Seçimi</h5>
+              <p class="small text-muted mb-0">
+                Aşağıdan markayı seç, sonrasında o markanın filtresiz ve filtreli cam karşılaştırmasını gör.
+              </p>
+            </div>
+
+            <!-- 1) SADECE 3 KARE KUTU (İLK EKRAN) -->
+            <div id="rxBrandGrid" class="row g-3">
+              <div class="col-md-4">
+                <div class="rx-brand-card" data-brand="nikon">
+                  <div class="rx-logo-wrap nikon-bg">
+                    <span class="rx-logo-text">Nikon</span>
+                  </div>
+                  <div class="rx-brand-body">
+                    <h6 class="mb-1">Nikon RX</h6>
+                    <p class="small mb-0 text-muted">Yüksek netlik, ince film kaplama.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="rx-brand-card" data-brand="kodak">
+                  <div class="rx-logo-wrap kodak-bg">
+                    <span class="rx-logo-text">Kodak</span>
+                  </div>
+                  <div class="rx-brand-body">
+                    <h6 class="mb-1">Kodak RX</h6>
+                    <p class="small mb-0 text-muted">Konfor odaklı günlük kullanım.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="rx-brand-card premium" data-brand="zeiss">
+                  <div class="premium-ribbon">⭐ Önerilen</div>
+                  <div class="rx-logo-wrap zeiss-bg">
+                    <span class="rx-logo-text">Zeiss</span>
+                  </div>
+                  <div class="rx-brand-body">
+                    <h6 class="mb-1">Zeiss RX</h6>
+                    <p class="small mb-0 text-muted">Ödüllü premium cam teknolojisi.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2) SEÇİLDİĞİNDE AÇILAN DETAY EKRANI -->
+            <div id="rxDetail" class="mt-4 d-none">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <div>
+                  <h5 class="mb-0" id="rxDetailTitle">Nikon RX Cam</h5>
+                  <div class="rx-stars small mt-1" id="rxStarsRow">
+                    <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" id="rxStar5">★</span>
+                    <span class="ms-2" id="rxStarLabel">Yüksek performans cam</span>
+                  </div>
+                </div>
+                <button class="btn btn-outline-light btn-sm rounded-pill" id="rxBackBtn">
+                  ← RX Camlara Dön
+                </button>
+              </div>
+
+              <!-- Zeiss için özel premium rozet ve ödül satırı -->
+              <div id="rxPremiumRow" class="premium-info d-none mb-3">
+                <span class="premium-pill">⭐ En iyi cam markası segmenti</span>
+              </div>
+
+              <div id="rxAwardsRow" class="awards-row d-none mb-3">
+                <div class="award-pill">
+                  <span class="award-icon">🏆</span>
+                  <span>Lens Product of the Year*</span>
+                </div>
+                <div class="award-pill">
+                  <span class="award-icon">🥇</span>
+                  <span>Red Dot “Best of the Best”*</span>
+                </div>
+                <div class="award-pill">
+                  <span class="award-icon">🌍</span>
+                  <span>Uluslararası ödüllü cam teknolojisi</span>
+                </div>
+              </div>
+
+              <div class="row g-4 align-items-stretch">
+                <!-- Filtresiz -->
+                <div class="col-md-6">
+                  <h6 class="mb-2">Standart Cam / Filtresiz</h6>
+                  <div class="glass-frame rx-frame">
+                    <img
+                      src="img.jpg"
+                      alt="Filtresiz görüntü"
+                      class="glass-image"
+                      id="rxBaseImage"
+                    />
+                    <span class="glass-label badge" id="rxBaseLabel">
+                      Standart Cam / Filtresiz
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Filtreli -->
+                <div class="col-md-6">
+                  <h6 class="mb-2">Filtreli RX Cam</h6>
+                  <div class="glass-frame rx-frame">
+                    <img
+                      src="img.jpg"
+                      alt="Filtreli görüntü"
+                      class="glass-image"
+                      id="rxFilteredImage"
+                    />
+                    <div class="glass-overlay" id="rxOverlay"></div>
+
+                    <!-- ÜST BİLGİ ETİKETLERİ -->
+                    <div class="rx-badges">
+                      <div class="rx-badge" id="rxBadgeUv">UV / Mavi Işık Koruma: %99</div>
+                      <div class="rx-badge" id="rxBadgeFilter">Renk Doğruluğu / Kontrast: %95</div>
+                    </div>
+
+                    <span class="glass-label badge" id="rxFilterLabel">
+                      RX Filtreli
+                    </span>
+
+                    <!-- RX fiyat baloncuğu -->
+                    <div class="price-bubble rx-bubble" id="rxPrice">
+                      ₺3.000 – ₺3.800
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RX Bilgileri -->
+              <div class="row mt-3 small">
+                <div class="col-md-4">
+                  <span class="text-muted d-block">Marka</span>
+                  <span class="fw-semibold" id="rxBrandName">Nikon RX</span>
+                </div>
+                <div class="col-md-4">
+                  <span class="text-muted d-block">UV / Mavi Işık Koruma</span>
+                  <span class="fw-semibold" id="rxUv">-%</span>
+                </div>
+                <div class="col-md-4">
+                  <span class="text-muted d-block">Renk Doğruluğu / Kontrast</span>
+                  <span class="fw-semibold" id="rxFilterRate">-%</span>
+                </div>
+              </div>
+
+              <p class="small text-muted mt-2 mb-2" id="rxDesc">
+                Seçilen RX camın detaylı açıklaması burada görünecek.
+              </p>
+
+              <!-- RX: NEDEN SEÇMELİ? -->
+              <div class="highlight-box mt-1" id="rxWhyBox">
+                <h6 class="highlight-title mb-1">Bu camı neden seçmeli?</h6>
+                <p class="small mb-0" id="rxWhyText"></p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -199,10 +490,55 @@
     </div> <!-- .tab-content -->
 
     <footer class="pt-2 small text-center text-muted">
-      Tablet için optimize – tam ekran modunda showroom gibi kullan.
-    </footer>
+      <p>Tavsiye edilen iskonto oranı max %20</p>
+      Tüm camlar tek satış fiyatıdır. Kdv dahil fiyatdır !
+      <!-- İskonto Hesaplama -->
+<div class="discount-box mt-3">
+  <h6 class="mb-2 text-center">İskonto Hesaplama</h6>
+
+  <div class="row g-2">
+    <div class="col-6">
+      <input type="number" id="discPrice" class="form-control form-control-sm disc-input"
+             placeholder="Fiyat (₺)">
+    </div>
+    <div class="col-6">
+      <input type="number" id="discRate" class="form-control form-control-sm disc-input"
+             placeholder="İskonto (%)">
+    </div>
   </div>
 
+  <button class="btn btn-outline-success btn-sm w-100 mt-2" id="discCalcBtn">Hesapla</button>
+
+  <div class="discount-result mt-2 text-center d-none" id="discResult"></div>
+</div>
+
+    </footer>
+  </div>
+<script>// ======================
+//   İSKONTO HESAPLAMA
+// ======================
+const discPrice = document.getElementById("discPrice");
+const discRate = document.getElementById("discRate");
+const discCalcBtn = document.getElementById("discCalcBtn");
+const discResult = document.getElementById("discResult");
+
+if (discCalcBtn) {
+  discCalcBtn.addEventListener("click", () => {
+    const price = parseFloat(discPrice.value);
+    const rate = parseFloat(discRate.value);
+
+    if (!price || !rate) {
+      discResult.textContent = "Lütfen fiyat ve oran girin.";
+      discResult.classList.remove("d-none");
+      return;
+    }
+
+    const discounted = price - (price * (rate / 100));
+    discResult.textContent = `İskontolu Fiyat: ₺${discounted.toFixed(2)}`;
+    discResult.classList.remove("d-none");
+  });
+}
+</script>
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- App JS -->
