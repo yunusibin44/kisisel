@@ -171,148 +171,133 @@
     <div class="tab-content">
 
       <!-- YEŞİL ANTİREFLE -->
-      <div
-        class="tab-pane fade show active"
-        id="green-pane"
-        role="tabpanel"
-        aria-labelledby="green-tab"
-      >
-        <div class="card glass-card mb-4">
-          <div class="card-body">
-            <div class="row g-4 align-items-stretch">
-              <!-- PREVIEW -->
-              <div class="col-md-7">
-                <div class="glass-frame" id="greenFrame">
-                  <img
-                    src="img.jpg"
-                    alt="Camdan görüntü"
-                    class="glass-image"
-                    id="greenImage"
-                  />
-                  <div class="glass-overlay" id="greenOverlay"></div>
-                  <span class="glass-label badge" id="greenLabel">
-                    Yeşil Antirefle %30
-                  </span>
-                  <!-- Fiyat baloncuğu -->
-                  <div class="price-bubble green-bubble" id="greenPrice">
-                   1000₺
-                  </div>
-                </div>
+<!-- YEŞİL ANTİREFLE -->
+<div
+  class="tab-pane fade show active"
+  id="green-pane"
+  role="tabpanel"
+  aria-labelledby="green-tab"
+>
+  <div class="card glass-card mb-4">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <div>
+          <h5 class="mb-1 text-green-title">Yeşil Antirefle Cam</h5>
+          <p class="small text-muted mb-0">
+            Aynı sahne, solda filtreli cam – sağda standart cam. Çizgiyi kaydırarak farkı canlı gösterin.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4 align-items-stretch">
+        <!-- SLIDER -->
+        <div class="col-md-12">
+          <div class="rx-compare-wrap">
+            <div class="glass-frame rx-frame rx-compare" id="greenCompare">
+              <!-- Tek fotoğraf -->
+
+                         <button class="fullscreen-img-btn" data-target="greenCompare">⛶</button>
+              <img
+                src="DENEM.png"
+                alt="Yeşil antirefle sahne"
+                class="glass-image"
+                id="greenImage"
+              />
+
+              <!-- Sadece filtre alanı -->
+              <div class="rx-filter-overlay" id="greenOverlay"></div>
+
+              <!-- Kaydırma çubuğu -->
+              <div class="rx-compare-handle" id="greenHandle">
+                <div class="rx-handle-line"></div>
+                <div class="rx-handle-knob"></div>
               </div>
 
-              <!-- KONTROLLER -->
-              <div class="col-md-5">
-                <h5 class="card-title mb-2 text-green-title">Yeşil Antirefle Cam</h5>
-                <p class="small text-muted mb-3">
-                  Tüm camlarda sahne aynı, sadece geçtiği camın kalitesi ve netliği değişiyor.
-                </p>
-
-                <div class="btn-group flex-wrap w-100 mb-3" role="group" aria-label="Yeşil antirefle seviyeleri">
-                  <button type="button" class="btn btn-outline-success level-btn active"
-                          data-type="green" data-level="30">%30</button>
-                  <button type="button" class="btn btn-outline-success level-btn"
-                          data-type="green" data-level="45">%45</button>
-                  <button type="button" class="btn btn-outline-success level-btn"
-                          data-type="green" data-level="60">%60</button>
-                  <button type="button" class="btn btn-outline-success level-btn"
-                          data-type="green" data-level="90">%90</button>
-                  <button type="button" class="btn btn-outline-success level-btn"
-                          data-type="green" data-level="99">%99</button>
-                </div>
-
-                <dl class="row small mb-2">
-                  <dt class="col-6 text-muted">UV Koruma</dt>
-                  <dd class="col-6 fw-semibold" id="greenUv">-%</dd>
-
-                  <dt class="col-6 text-muted">Yansıtma / Filtre Oranı</dt>
-                  <dd class="col-6 fw-semibold" id="greenFilter">-%</dd>
-                </dl>
-
-                <p class="small mb-2 text-muted" id="greenDesc">
-                  Seçilen cam için açıklama burada görünecek.
-                </p>
-
-                <!-- YEŞİL: NEDEN SEÇMELİ? -->
-                <div class="highlight-box mt-2" id="greenWhyBox">
-                  <h6 class="highlight-title mb-1">Bu camı neden seçmeli?</h6>
-                  <p class="small mb-0" id="greenWhyText"></p>
-                </div>
+              <!-- Üst etiketler -->
+              <div class="rx-badges">
+                <div class="rx-badge" id="greenBadgeUv">UV / Mavi Işık Koruma: %65</div>
+                <div class="rx-badge" id="greenBadgeFilter">Renk Doğruluğu / Kontrast: %70</div>
               </div>
+
+              <!-- Alt etiket -->
+              <span class="glass-label badge" id="greenLabel">
+                Çizginin solu: Filtreli Yeşil Antirefle / Sağı: Standart Cam
+              </span>
+
+              <!-- Fiyat balonu -->
+              <div class="price-bubble" id="greenPrice">₺2.000-₺6.000</div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
 
       <!-- BLUE CAM -->
-      <div
-        class="tab-pane fade"
-        id="blue-pane"
-        role="tabpanel"
-        aria-labelledby="blue-tab"
-      >
-        <div class="card glass-card mb-4">
-          <div class="card-body">
-            <div class="row g-4 align-items-stretch">
-              <!-- PREVIEW -->
-              <div class="col-md-7">
-                <div class="glass-frame" id="blueFrame">
-                  <img
-                    src="img.jpg"
-                    alt="Camdan görüntü"
-                    class="glass-image"
-                    id="blueImage"
-                  />
-                  <div class="glass-overlay" id="blueOverlay"></div>
-                  <span class="glass-label badge" id="blueLabel">
-                    Blue Cam %30
-                  </span>
-                  <!-- Fiyat baloncuğu -->
-                  <div class="price-bubble blue-bubble" id="bluePrice">
-                    ₺1.800 – ₺2.400
-                  </div>
-                </div>
+<!-- BLUE CAM -->
+<div
+  class="tab-pane fade"
+  id="blue-pane"
+  role="tabpanel"
+  aria-labelledby="blue-tab"
+>
+  <div class="card glass-card mb-4">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <div>
+          <h5 class="mb-1 text-blue-title">Blue Cam (Mavi Işık Filtresi)</h5>
+          <p class="small text-muted mb-0">
+            Aynı sahne, solda filtreli blue cam – sağda standart cam. Çizgiyi kaydırarak mavi ışık filtresinin etkisini gösterin.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4 align-items-stretch">
+        <!-- SLIDER -->
+        <div class="col-md-12">
+          <div class="rx-compare-wrap">
+            <div class="glass-frame rx-frame rx-compare" id="blueCompare">
+              <!-- Tek fotoğraf -->
+               <button class="fullscreen-img-btn" data-target="blueCompare">⛶</button>
+              <img
+                src="DENEM.png"
+                alt="Blue cam sahne"
+                class="glass-image"
+                id="blueImage"
+              />
+
+              <!-- Sadece filtre alanı -->
+              <div class="rx-filter-overlay" id="blueOverlay"></div>
+
+              <!-- Kaydırma çubuğu -->
+              <div class="rx-compare-handle" id="blueHandle">
+                <div class="rx-handle-line"></div>
+                <div class="rx-handle-knob"></div>
               </div>
 
-              <!-- KONTROLLER -->
-              <div class="col-md-5">
-                <h5 class="card-title mb-2 text-blue-title">Blue Cam</h5>
-                <p class="small text-muted mb-3">
-                  Ucuz blue cam sarı ve kirli gösterirken, kalite arttıkça sarılık azalır, görüntü beyaza yaklaşır.
-                </p>
-
-                <div class="btn-group flex-wrap w-100 mb-3" role="group" aria-label="Blue cam seviyeleri">
-                  <button type="button" class="btn btn-outline-primary level-btn active"
-                          data-type="blue" data-level="30">%30</button>
-                  <button type="button" class="btn btn-outline-primary level-btn"
-                          data-type="blue" data-level="60">%60</button>
-                  <button type="button" class="btn btn-outline-primary level-btn"
-                          data-type="blue" data-level="90">%90</button>
-                  <button type="button" class="btn btn-outline-primary level-btn"
-                          data-type="blue" data-level="99">%99</button>
-                </div>
-
-                <dl class="row small mb-2">
-                  <dt class="col-6 text-muted">UV / Mavi Işık Koruma</dt>
-                  <dd class="col-6 fw-semibold" id="blueUv">-%</dd>
-
-                  <dt class="col-6 text-muted">Renk Doğruluğu</dt>
-                  <dd class="col-6 fw-semibold" id="blueFilter">-%</dd>
-                </dl>
-
-                <p class="small mb-2 text-muted" id="blueDesc">
-                  Seçilen blue cam için açıklama burada görünecek.
-                </p>
-
-                <!-- BLUE: NEDEN SEÇMELİ? -->
-                <div class="highlight-box mt-2" id="blueWhyBox">
-                  <h6 class="highlight-title mb-1">Bu camı neden seçmeli?</h6>
-                  <p class="small mb-0" id="blueWhyText"></p>
-                </div>
+              <!-- Üst etiketler -->
+              <div class="rx-badges">
+                <div class="rx-badge">UV / Mavi Işık Koruma: %65</div>
+                <div class="rx-badge">Renk Doğruluğu / Kontrast: %80</div>
               </div>
+
+              <!-- Alt etiket -->
+              <span class="glass-label badge" id="blueLabel">
+                Çizginin solu: Filtreli Blue Cam / Sağı: Standart Cam
+              </span>
+
+              <!-- Fiyat balonu -->
+              <div class="price-bubble" id="bluePrice">₺2.600</div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
 
       <!-- RX CAMLAR -->
       <div
@@ -413,8 +398,10 @@
     <div class="rx-compare-wrap">
       <div class="glass-frame rx-frame rx-compare" id="rxCompare">
         <!-- TEK FOTOĞRAF -->
+                   <button class="fullscreen-img-btn" data-target="rxCompare">⛶</button>
+
         <img
-          src="chairs-2181960.jpg"
+          src="Gövde.png"
           alt="RX cam sahne görüntüsü"
           class="glass-image"
           id="rxImage"
@@ -431,8 +418,8 @@
 
         <!-- ÜST BİLGİ ETİKETLERİ -->
         <div class="rx-badges">
-          <div class="rx-badge" id="rxBadgeUv">UV / Mavi Işık Koruma: %99</div>
-          <div class="rx-badge" id="rxBadgeFilter">Renk Doğruluğu / Kontrast: %95</div>
+          <div class="rx-badge" id="rxBadgeUv">UV / Mavi Işık Koruma: %65</div>
+          <div class="rx-badge" id="rxBadgeFilter">Renk Doğruluğu / Kontrast: %70</div>
         </div>
 
         <!-- ALT ETİKET -->
@@ -533,6 +520,26 @@ if (discCalcBtn) {
     discResult.classList.remove("d-none");
   });
 }
+</script>
+<script>
+  // ======================
+//   GÖRSEL TAM EKRAN BUTONU
+// ======================
+document.querySelectorAll(".fullscreen-img-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const id = btn.dataset.target;
+    const elem = document.getElementById(id);
+
+    if (!elem) return;
+
+    if (!document.fullscreenElement) {
+      elem.requestFullscreen().catch(err => console.log(err));
+    } else {
+      document.exitFullscreen();
+    }
+  });
+});
+
 </script>
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
